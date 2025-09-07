@@ -1,13 +1,13 @@
 # 🎯 Algorithmie Avancée - Site Web du Cours
 
-Site web statique pour le cours d'Algorithmie Avancée destiné aux étudiants BAC+2.
+Site web statique pour le cours d'Algorithmie Avancée destiné aux étudiants BAC+2. Approche progressive avec exercices par concept algorithmique et projet final Tetris.
 
 ## 📋 Informations du Cours
 
 - **Formateur :** Akram BOUKHERS
 - **Public :** BAC+2
 - **Durée :** 15h (3 sessions de 5h)
-- **Format :** 50% Théorie / 50% Pratique avec fil rouge ludique
+- **Format :** 50% Théorie / 50% Pratique avec exercices par concept
 
 ## 🚀 Mise en Ligne
 
