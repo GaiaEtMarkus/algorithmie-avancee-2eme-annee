@@ -192,18 +192,67 @@
                                     </div>
                                     
                                     <h5 class="text-lg font-medium mb-4 text-gray-800">Exemple concret :</h5>
-                                    <div class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm">
-                                        <pre><code>// Algorithme : Trier une liste
+                                    <div class="space-y-4">
+                                        <!-- Algorithme -->
+                                        <div class="bg-blue-50 p-4 rounded-lg">
+                                            <h6 class="font-semibold text-blue-800 mb-2">📝 Algorithme (Pseudocode)</h6>
+                                            <pre class="text-sm text-gray-700"><code>// Algorithme : Trier une liste
 1. Prendre le premier élément
 2. Le comparer avec les suivants
 3. Le placer à la bonne position
-4. Répéter pour chaque élément
+4. Répéter pour chaque élément</code></pre>
+                                        </div>
+                                        
+                                        <!-- Correspondance -->
+                                        <div class="bg-yellow-50 p-4 rounded-lg">
+                                            <h6 class="font-semibold text-yellow-800 mb-2">🔄 Correspondance Algorithme → Code</h6>
+                                            <div class="grid md:grid-cols-2 gap-4 text-sm">
+                                                <div>
+                                                    <h7 class="font-medium text-gray-700">Étape 1 : Prendre le premier élément</h7>
+                                                    <p class="text-gray-600">→ <code>for (let i = 0; i < liste.length; i++)</code></p>
+                                                </div>
+                                                <div>
+                                                    <h7 class="font-medium text-gray-700">Étape 2 : Comparer avec les suivants</h7>
+                                                    <p class="text-gray-600">→ <code>for (let j = i + 1; j < liste.length; j++)</code></p>
+                                                </div>
+                                                <div>
+                                                    <h7 class="font-medium text-gray-700">Étape 3 : Placer à la bonne position</h7>
+                                                    <p class="text-gray-600">→ <code>if (liste[i] > liste[j]) { [liste[i], liste[j]] = [liste[j], liste[i]]; }</code></p>
+                                                </div>
+                                                <div>
+                                                    <h7 class="font-medium text-gray-700">Étape 4 : Répéter pour chaque élément</h7>
+                                                    <p class="text-gray-600">→ <code>Boucles imbriquées</code></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Code TypeScript -->
+                                        <div class="bg-gray-900 text-green-400 p-4 rounded-lg">
+                                            <h6 class="font-semibold text-white mb-2">💻 Programme TypeScript</h6>
+                                            <pre class="text-sm"><code>// Version manuelle (correspond à l'algorithme)
+function trierManuel(liste: number[]): number[] {
+    const copie = [...liste];
+    
+    // Étape 1 : Prendre le premier élément
+    for (let i = 0; i < copie.length; i++) {
+        // Étape 2 : Comparer avec les suivants
+        for (let j = i + 1; j < copie.length; j++) {
+            // Étape 3 : Placer à la bonne position
+            if (copie[i] > copie[j]) {
+                [copie[i], copie[j]] = [copie[j], copie[i]];
+            }
+        }
+        // Étape 4 : Répéter pour chaque élément (boucle externe)
+    }
+    
+    return copie;
+}
 
-// Programme TypeScript
+// Version optimisée (utilise l'algorithme natif)
 function trier(liste: number[]): number[] {
-    // Implémentation du tri
     return liste.sort((a, b) => a - b);
 }</code></pre>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -609,12 +658,43 @@ DÉBUT
 FIN</code></pre>
                             </div>
                             
+                            <h4 class="text-lg font-semibold mb-4 text-yellow-700">🔄 Correspondance Pseudocode → TypeScript</h4>
+                            <div class="bg-yellow-50 p-3 rounded-lg mb-4">
+                                <div class="text-sm space-y-2">
+                                    <div class="flex items-start">
+                                        <span class="font-medium text-gray-700 mr-2">1. Lire le prix HT</span>
+                                        <span class="text-gray-600">→ <code>prixHT: number</code> (paramètre)</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="font-medium text-gray-700 mr-2">2. Lire le taux de TVA</span>
+                                        <span class="text-gray-600">→ <code>tauxTVA: number</code> (paramètre)</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="font-medium text-gray-700 mr-2">3. Calculer le prix TTC</span>
+                                        <span class="text-gray-600">→ <code>return prixHT * (1 + tauxTVA/100)</code></span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <span class="font-medium text-gray-700 mr-2">4. Afficher le résultat</span>
+                                        <span class="text-gray-600">→ <code>return</code> (retour de fonction)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <h4 class="text-lg font-semibold mb-4 text-purple-700">Implémentation TypeScript</h4>
                             <div class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm">
                                 <pre><code>function calculerTTC(prixHT: number, tauxTVA: number): number {
-    // Votre code ici
-    return 0; // À remplacer
-}</code></pre>
+    // Étape 3 : Calculer le prix TTC
+    const prixTTC = prixHT * (1 + tauxTVA / 100);
+    
+    // Étape 4 : Retourner le résultat
+    return prixTTC;
+}
+
+// Utilisation (étapes 1 et 2 : lecture des données)
+const prixHT = 100;      // Étape 1
+const tauxTVA = 20;      // Étape 2
+const resultat = calculerTTC(prixHT, tauxTVA);
+console.log(`Prix TTC: ${resultat}€`);</code></pre>
                             </div>
                         </div>
                     </div>
