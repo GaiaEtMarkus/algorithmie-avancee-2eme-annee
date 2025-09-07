@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 3 - Complexité & Optimisation | Algorithmie Avancée</title>
+    <meta name="description" content="Session 3 du cours d'Algorithmie Avancée - Complexité des Algorithmes et Optimisation">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a'
+                        },
+                        accent: {
+                            500: '#10b981',
+                            600: '#059669'
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="../index.html" class="text-xl font-bold text-primary-700">Algorithmie Avancée</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="../index.html" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Accueil</a>
+                        <a href="#objectifs" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Objectifs</a>
+                        <a href="#theorie" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Théorie</a>
+                        <a href="#pratique" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Pratique</a>
+                        <a href="#projet" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Projet Final</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-green-500 to-green-700 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    Session 3 : Complexité & Optimisation
+                </h1>
+                <p class="text-xl mb-6 text-green-100">
+                    Analyse et Optimisation des Algorithmes
+                </p>
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 max-w-2xl mx-auto">
+                    <p class="text-lg mb-2">
+                        <strong>Durée :</strong> 5 heures
+                    </p>
+                    <p class="text-lg mb-2">
+                        <strong>Format :</strong> Théorie + Exercices + Projet Final
+                    </p>
+                    <p class="text-lg">
+                        <strong>Niveau :</strong> BAC+2 - Performance et optimisation
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objectifs -->
+    <section id="objectifs" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">🎯 Objectifs de la Session</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    À la fin de cette session, vous saurez analyser la complexité des algorithmes 
+                    et optimiser vos programmes pour de meilleures performances.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="text-center p-6 bg-green-50 rounded-xl">
+                    <div class="text-4xl mb-4">📊</div>
+                    <h3 class="text-lg font-semibold mb-2">Analyser la complexité</h3>
+                    <p class="text-gray-600 text-sm">Temps et espace mémoire</p>
+                </div>
+                <div class="text-center p-6 bg-blue-50 rounded-xl">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="text-lg font-semibold mb-2">Optimiser les algorithmes</h3>
+                    <p class="text-gray-600 text-sm">Techniques d'amélioration</p>
+                </div>
+                <div class="text-center p-6 bg-purple-50 rounded-xl">
+                    <div class="text-4xl mb-4">🎮</div>
+                    <h3 class="text-lg font-semibold mb-2">Projet final</h3>
+                    <p class="text-gray-600 text-sm">Tetris optimisé</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenu Théorique -->
+    <section id="theorie" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">📖 Contenu Théorique</h2>
+                <p class="text-lg text-gray-600">Analyse de complexité et techniques d'optimisation</p>
+            </div>
+            
+            <div class="space-y-8">
+                <!-- Bloc 1: Complexité -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-100 p-3 rounded-lg mr-4">
+                            <span class="text-2xl">1️⃣</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Complexité des Algorithmes</h3>
+                    </div>
+                    
+                    <div class="space-y-8">
+                        <!-- Notion de complexité -->
+                        <div>
+                            <h4 class="text-xl font-semibold mb-6 text-green-700">Notion de Complexité</h4>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Définition</h5>
+                                    <div class="bg-green-50 p-4 rounded-lg mb-4">
+                                        <p class="text-gray-700 mb-3">
+                                            La <strong>complexité</strong> mesure l'efficacité d'un algorithme en fonction 
+                                            de la taille des données d'entrée.
+                                        </p>
+                                        <p class="text-gray-600 text-sm">
+                                            Elle nous aide à prédire les performances et à choisir le meilleur algorithme.
+                                        </p>
+                                    </div>
+                                    
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Types de complexité</h5>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="bg-blue-50 p-3 rounded text-center">
+                                            <h6 class="font-semibold text-blue-800">Temps</h6>
+                                            <p class="text-sm text-blue-600">Durée d'exécution</p>
+                                        </div>
+                                        <div class="bg-purple-50 p-3 rounded text-center">
+                                            <h6 class="font-semibold text-purple-800">Espace</h6>
+                                            <p class="text-sm text-purple-600">Mémoire utilisée</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Notation Big O</h5>
+                                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                        <pre class="text-sm text-gray-700"><code>// Complexités courantes
+O(1)     // Constante - Accès direct
+O(log n) // Logarithmique - Recherche binaire
+O(n)     // Linéaire - Parcours simple
+O(n²)    // Quadratique - Boucles imbriquées
+O(2ⁿ)    // Exponentielle - Récursion naïve</code></pre>
+                                    </div>
+                                    
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Exemple concret</h5>
+                                    <div class="bg-gray-50 p-4 rounded-lg">
+                                        <pre class="text-sm text-gray-700"><code>// O(n) - Linéaire
+function trouverMax(tableau: number[]): number {
+    let max = tableau[0];
+    for (let i = 1; i < tableau.length; i++) {
+        if (tableau[i] > max) {
+            max = tableau[i];
+        }
+    }
+    return max;
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Analyse de complexité -->
+                        <div>
+                            <h4 class="text-xl font-semibold mb-6 text-blue-700">Analyse de Complexité</h4>
+                            <div class="grid md:grid-cols-3 gap-6">
+                                <div class="bg-green-50 p-6 rounded-lg">
+                                    <h5 class="text-lg font-semibold mb-4 text-green-800">Meilleur cas</h5>
+                                    <p class="text-sm text-gray-600 mb-3">Le cas le plus favorable</p>
+                                    <div class="bg-gray-900 text-green-400 p-3 rounded text-xs">
+                                        <pre><code>// Recherche dans un tableau trié
+// Meilleur cas : élément au début
+// Complexité : O(1)</code></pre>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-blue-50 p-6 rounded-lg">
+                                    <h5 class="text-lg font-semibold mb-4 text-blue-800">Cas moyen</h5>
+                                    <p class="text-sm text-gray-600 mb-3">Performance typique</p>
+                                    <div class="bg-gray-900 text-green-400 p-3 rounded text-xs">
+                                        <pre><code>// Recherche dans un tableau
+// Cas moyen : élément au milieu
+// Complexité : O(n/2) ≈ O(n)</code></pre>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-red-50 p-6 rounded-lg">
+                                    <h5 class="text-lg font-semibold mb-4 text-red-800">Pire cas</h5>
+                                    <p class="text-sm text-gray-600 mb-3">Le cas le plus défavorable</p>
+                                    <div class="bg-gray-900 text-green-400 p-3 rounded text-xs">
+                                        <pre><code>// Recherche dans un tableau
+// Pire cas : élément à la fin
+// Complexité : O(n)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloc 2: Optimisation -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                            <span class="text-2xl">2️⃣</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Techniques d'Optimisation</h3>
+                    </div>
+                    
+                    <div class="space-y-8">
+                        <!-- Techniques de base -->
+                        <div>
+                            <h4 class="text-xl font-semibold mb-6 text-blue-700">Techniques de Base</h4>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Optimisations algorithmiques</h5>
+                                    <ul class="space-y-3 text-gray-600">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2">•</span>
+                                            <span><strong>Éviter les calculs redondants</strong><br>
+                                            Stocker les résultats intermédiaires</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2">•</span>
+                                            <span><strong>Sortir des boucles tôt</strong><br>
+                                            Utiliser break et return</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2">•</span>
+                                            <span><strong>Choisir la bonne structure</strong><br>
+                                            Tableau vs liste selon l'usage</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Exemple d'optimisation</h5>
+                                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                        <pre class="text-sm text-gray-700"><code>// Version non optimisée - O(n²)
+function sommeCarres(nombres: number[]): number {
+    let somme = 0;
+    for (let i = 0; i < nombres.length; i++) {
+        for (let j = 0; j < nombres.length; j++) {
+            somme += nombres[i] * nombres[j];
+        }
+    }
+    return somme;
+}
+
+// Version optimisée - O(n)
+function sommeCarresOpt(nombres: number[]): number {
+    let somme = 0;
+    for (let i = 0; i < nombres.length; i++) {
+        somme += nombres[i] * nombres[i];
+    }
+    return somme;
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Profiling et mesure -->
+                        <div>
+                            <h4 class="text-xl font-semibold mb-6 text-purple-700">Profiling et Mesure</h4>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Mesurer les performances</h5>
+                                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                        <pre class="text-sm text-gray-700"><code>// Mesurer le temps d'exécution
+console.time('monAlgorithme');
+
+// Votre algorithme ici
+const resultat = monAlgorithme(donnees);
+
+console.timeEnd('monAlgorithme');
+// Affiche : monAlgorithme: 15.234ms</code></pre>
+                                    </div>
+                                    
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Comparer les algorithmes</h5>
+                                    <div class="bg-gray-50 p-4 rounded-lg">
+                                        <pre class="text-sm text-gray-700"><code>// Comparer deux approches
+const donnees = genererDonnees(1000);
+
+console.time('Approche 1');
+const resultat1 = approche1(donnees);
+console.timeEnd('Approche 1');
+
+console.time('Approche 2');
+const resultat2 = approche2(donnees);
+console.timeEnd('Approche 2');</code></pre>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Bonnes pratiques</h5>
+                                    <ul class="space-y-3 text-gray-600">
+                                        <li class="flex items-start">
+                                            <span class="text-green-500 mr-2">✓</span>
+                                            <span><strong>Mesurer avant d'optimiser</strong><br>
+                                            Identifier les goulots d'étranglement</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-500 mr-2">✓</span>
+                                            <span><strong>Optimiser les parties critiques</strong><br>
+                                            Focus sur les 20% qui prennent 80% du temps</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-500 mr-2">✓</span>
+                                            <span><strong>Garder la lisibilité</strong><br>
+                                            Code optimisé mais compréhensible</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-green-500 mr-2">✓</span>
+                                            <span><strong>Tester après optimisation</strong><br>
+                                            Vérifier que ça fonctionne toujours</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exercices par Concept -->
+    <section id="pratique" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">💻 Exercices par Concept</h2>
+                <p class="text-lg text-gray-600">Analyser et optimiser des algorithmes existants</p>
+            </div>
+            
+            <div class="space-y-8">
+                <!-- Exercice 1: Analyse de complexité -->
+                <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-500 text-white p-3 rounded-lg mr-4">
+                            <span class="text-2xl">📊</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Exercice 1 : Analyse de Complexité</h3>
+                            <p class="text-gray-600">Concept : Identifier la complexité d'algorithmes</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-green-700">Objectif</h4>
+                            <p class="text-gray-600 mb-4">
+                                Analyser la complexité temporelle et spatiale de différents algorithmes.
+                            </p>
+                            
+                            <h4 class="text-lg font-semibold mb-4 text-green-700">Problème : Analyse d'algorithmes</h4>
+                            <div class="bg-white p-4 rounded-lg mb-4">
+                                <p class="text-sm text-gray-600 mb-2">
+                                    <strong>Énoncé :</strong> Analyser la complexité des algorithmes suivants.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Identifier la complexité temporelle</li>
+                                    <li>• Identifier la complexité spatiale</li>
+                                    <li>• Expliquer pourquoi</li>
+                                    <li>• Proposer des améliorations</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-blue-700">Algorithmes à analyser</h4>
+                            <div class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm">
+                                <pre><code>// Algorithme 1
+function rechercheLineaire(tableau: number[], cible: number): number {
+    for (let i = 0; i < tableau.length; i++) {
+        if (tableau[i] === cible) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// Algorithme 2
+function triBulle(tableau: number[]): number[] {
+    const copie = [...tableau];
+    for (let i = 0; i < copie.length; i++) {
+        for (let j = 0; j < copie.length - i - 1; j++) {
+            if (copie[j] > copie[j + 1]) {
+                [copie[j], copie[j + 1]] = [copie[j + 1], copie[j]];
+            }
+        }
+    }
+    return copie;
+}
+
+// Algorithme 3
+function fibonacci(n: number): number {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+// Questions :
+// 1. Quelle est la complexité de chaque algorithme ?
+// 2. Quel est le pire cas pour chacun ?
+// 3. Comment optimiser l'algorithme 3 ?</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercice 2: Optimisation d'algorithmes -->
+                <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-500 text-white p-3 rounded-lg mr-4">
+                            <span class="text-2xl">⚡</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Exercice 2 : Optimisation d'Algorithmes</h3>
+                            <p class="text-gray-600">Concept : Améliorer les performances</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-blue-700">Objectif</h4>
+                            <p class="text-gray-600 mb-4">
+                                Optimiser des algorithmes inefficaces en appliquant les techniques apprises.
+                            </p>
+                            
+                            <h4 class="text-lg font-semibold mb-4 text-blue-700">Problème : Optimisation</h4>
+                            <div class="bg-white p-4 rounded-lg mb-4">
+                                <p class="text-sm text-gray-600 mb-2">
+                                    <strong>Énoncé :</strong> Optimiser l'algorithme de recherche de doublons.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Version actuelle : O(n²)</li>
+                                    <li>• Objectif : O(n)</li>
+                                    <li>• Utiliser des structures de données</li>
+                                    <li>• Mesurer les performances</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-green-700">Code à optimiser</h4>
+                            <div class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm">
+                                <pre><code>// Version non optimisée - O(n²)
+function trouverDoublons(tableau: number[]): number[] {
+    const doublons: number[] = [];
+    
+    for (let i = 0; i < tableau.length; i++) {
+        for (let j = i + 1; j < tableau.length; j++) {
+            if (tableau[i] === tableau[j] && !doublons.includes(tableau[i])) {
+                doublons.push(tableau[i]);
+            }
+        }
+    }
+    
+    return doublons;
+}
+
+// Votre mission :
+// 1. Analyser la complexité actuelle
+// 2. Proposer une version optimisée O(n)
+// 3. Utiliser un Set ou un Map
+// 4. Mesurer les performances avec console.time()
+
+// Version optimisée à écrire :
+function trouverDoublonsOpt(tableau: number[]): number[] {
+    // Votre code ici
+    return [];
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercice 3: Comparaison d'algorithmes -->
+                <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-purple-500 text-white p-3 rounded-lg mr-4">
+                            <span class="text-2xl">🔄</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Exercice 3 : Comparaison d'Algorithmes</h3>
+                            <p class="text-gray-600">Concept : Mesurer et comparer les performances</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-purple-700">Objectif</h4>
+                            <p class="text-gray-600 mb-4">
+                                Comparer différentes approches pour résoudre le même problème.
+                            </p>
+                            
+                            <h4 class="text-lg font-semibold mb-4 text-purple-700">Problème : Tri de tableaux</h4>
+                            <div class="bg-white p-4 rounded-lg mb-4">
+                                <p class="text-sm text-gray-600 mb-2">
+                                    <strong>Énoncé :</strong> Comparer différents algorithmes de tri.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Tri à bulles (O(n²))</li>
+                                    <li>• Tri par sélection (O(n²))</li>
+                                    <li>• Tri natif JavaScript (O(n log n))</li>
+                                    <li>• Mesurer sur différentes tailles</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-red-700">Code à compléter</h4>
+                            <div class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm">
+                                <pre><code>// Tri à bulles
+function triBulle(tableau: number[]): number[] {
+    // Votre implémentation ici
+    return [];
+}
+
+// Tri par sélection
+function triSelection(tableau: number[]): number[] {
+    // Votre implémentation ici
+    return [];
+}
+
+// Fonction de comparaison
+function comparerAlgorithmes() {
+    const tailles = [100, 1000, 5000];
+    
+    tailles.forEach(taille => {
+        const tableau = genererTableauAleatoire(taille);
+        
+        console.log(`\n=== Test avec ${taille} éléments ===`);
+        
+        // Tester tri à bulles
+        console.time('Tri à bulles');
+        triBulle([...tableau]);
+        console.timeEnd('Tri à bulles');
+        
+        // Tester tri par sélection
+        console.time('Tri par sélection');
+        triSelection([...tableau]);
+        console.timeEnd('Tri par sélection');
+        
+        // Tester tri natif
+        console.time('Tri natif');
+        [...tableau].sort((a, b) => a - b);
+        console.timeEnd('Tri natif');
+    });
+}
+
+// Fonction utilitaire
+function genererTableauAleatoire(taille: number): number[] {
+    // Votre code ici
+    return [];
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercice 4: Optimisation de mémoire -->
+                <div class="bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-orange-500 text-white p-3 rounded-lg mr-4">
+                            <span class="text-2xl">💾</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Exercice 4 : Optimisation de Mémoire</h3>
+                            <p class="text-gray-600">Concept : Réduire l'utilisation mémoire</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-orange-700">Objectif</h4>
+                            <p class="text-gray-600 mb-4">
+                                Optimiser l'utilisation de la mémoire dans un algorithme.
+                            </p>
+                            
+                            <h4 class="text-lg font-semibold mb-4 text-orange-700">Problème : Gestion mémoire</h4>
+                            <div class="bg-white p-4 rounded-lg mb-4">
+                                <p class="text-sm text-gray-600 mb-2">
+                                    <strong>Énoncé :</strong> Optimiser un algorithme qui utilise beaucoup de mémoire.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Version actuelle : O(n) espace</li>
+                                    <li>• Objectif : O(1) espace</li>
+                                    <li>• Éviter les copies inutiles</li>
+                                    <li>• Travailler en place</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-blue-700">Code à optimiser</h4>
+                            <div class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm">
+                                <pre><code>// Version qui utilise beaucoup de mémoire
+function inverserTableau(tableau: number[]): number[] {
+    const resultat: number[] = [];
+    
+    // Créer une copie complète
+    for (let i = 0; i < tableau.length; i++) {
+        resultat[i] = tableau[tableau.length - 1 - i];
+    }
+    
+    return resultat;
+}
+
+// Version optimisée en mémoire
+function inverserTableauOpt(tableau: number[]): void {
+    // Votre code ici
+    // Inverser le tableau en place
+    // Pas de copie, modification directe
+    // Complexité spatiale : O(1)
+}
+
+// Test des deux versions
+function testerOptimisationMemoire() {
+    const tableau = [1, 2, 3, 4, 5];
+    
+    console.log('Tableau original:', tableau);
+    
+    // Version avec copie
+    const inverse1 = inverserTableau(tableau);
+    console.log('Version avec copie:', inverse1);
+    console.log('Original inchangé:', tableau);
+    
+    // Version optimisée
+    inverserTableauOpt(tableau);
+    console.log('Version optimisée:', tableau);
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projet Final -->
+    <section id="projet" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">🎮 Projet Final : Tetris</h2>
+                <p class="text-lg text-gray-600">Application de tous les concepts appris dans un jeu complet</p>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="text-center mb-8">
+                    <div class="text-6xl mb-4">🧩</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Pourquoi Tetris ?</h3>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Tetris combine tous les concepts vus dans les 3 sessions : structures de données, 
+                        algorithmes, optimisation, et gestion du temps réel.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 text-green-700">Concepts appliqués</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span><strong>Session 1 :</strong> Variables, fonctions, boucles, conditions</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">✓</span>
+                                <span><strong>Session 2 :</strong> Tableaux 2D, structures de données</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-500 mr-2">✓</span>
+                                <span><strong>Session 3 :</strong> Optimisation, gestion des performances</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 text-blue-700">Défis techniques</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-orange-500 mr-2">•</span>
+                                <span>Gestion d'une grille 2D</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-orange-500 mr-2">•</span>
+                                <span>Détection de collisions</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-orange-500 mr-2">•</span>
+                                <span>Rotation des pièces</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-orange-500 mr-2">•</span>
+                                <span>Détection de lignes complètes</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-orange-500 mr-2">•</span>
+                                <span>Gestion du temps et des événements</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-yellow-50 p-6 rounded-lg mb-8">
+                    <h4 class="text-lg font-semibold mb-4 text-yellow-800">🎯 Mission : Créer Tetris from scratch</h4>
+                    <p class="text-gray-700 mb-4">
+                        Vous devez créer un jeu Tetris complet en utilisant uniquement les concepts appris. 
+                        Voici la structure de base à compléter :
+                    </p>
+                </div>
+                
+                <div class="bg-gray-900 text-green-400 p-6 rounded-lg">
+                    <h4 class="text-lg font-semibold mb-4 text-white">Structure de base fournie</h4>
+                    <pre class="text-sm"><code>// Structure principale du jeu Tetris
+class Tetris {
+    private grille: number[][];
+    private pieceActuelle: Piece | null;
+    private score: number;
+    private niveau: number;
+    private vitesse: number;
+    
+    constructor() {
+        this.initialiserGrille();
+        this.score = 0;
+        this.niveau = 1;
+        this.vitesse = 1000; // ms
+    }
+    
+    // Méthodes à implémenter
+    initialiserGrille(): void {
+        // Créer une grille 10x20
+    }
+    
+    genererPiece(): Piece {
+        // Générer une pièce aléatoire
+    }
+    
+    deplacerPiece(direction: string): boolean {
+        // Déplacer la pièce (gauche, droite, bas)
+    }
+    
+    tournerPiece(): boolean {
+        // Faire tourner la pièce
+    }
+    
+    verifierCollision(): boolean {
+        // Vérifier les collisions
+    }
+    
+    placerPiece(): void {
+        // Placer définitivement la pièce
+    }
+    
+    detecterLignesCompletes(): number[] {
+        // Trouver les lignes complètes
+    }
+    
+    supprimerLignes(lignes: number[]): void {
+        // Supprimer les lignes et décaler
+    }
+    
+    afficherGrille(): void {
+        // Afficher la grille dans la console
+    }
+    
+    boucleJeu(): void {
+        // Boucle principale du jeu
+    }
+}
+
+// Classe pour les pièces
+class Piece {
+    forme: number[][];
+    x: number;
+    y: number;
+    
+    constructor(forme: number[][]) {
+        this.forme = forme;
+        this.x = 4; // Position de départ
+        this.y = 0;
+    }
+    
+    tourner(): number[][] {
+        // Logique de rotation
+    }
+}
+
+// Définition des pièces Tetris
+const PIECES_TETRIS = {
+    I: [[1,1,1,1]],
+    O: [[1,1],[1,1]],
+    T: [[0,1,0],[1,1,1]],
+    S: [[0,1,1],[1,1,0]],
+    Z: [[1,1,0],[0,1,1]],
+    J: [[1,0,0],[1,1,1]],
+    L: [[0,0,1],[1,1,1]]
+};
+
+// Utilisation
+const jeu = new Tetris();
+jeu.boucleJeu();</code></pre>
+                </div>
+                
+                <div class="mt-8 bg-blue-50 p-6 rounded-lg">
+                    <h4 class="text-lg font-semibold mb-4 text-blue-800">📋 Checklist du projet</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <h5 class="font-medium mb-2">Fonctionnalités de base :</h5>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>□ Grille 10x20 fonctionnelle</li>
+                                <li>□ Génération de pièces aléatoires</li>
+                                <li>□ Déplacement des pièces</li>
+                                <li>□ Rotation des pièces</li>
+                                <li>□ Détection de collisions</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="font-medium mb-2">Fonctionnalités avancées :</h5>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>□ Détection de lignes complètes</li>
+                                <li>□ Suppression et décalage</li>
+                                <li>□ Système de score</li>
+                                <li>□ Augmentation de vitesse</li>
+                                <li>□ Game over</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 bg-green-50 p-6 rounded-lg">
+                    <h4 class="text-lg font-semibold mb-4 text-green-800">🌐 Environnement recommandé pour Tetris</h4>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h5 class="font-medium mb-3 text-green-700">💻 StackBlitz - Recommandé</h5>
+                            <p class="text-sm text-gray-600 mb-3">
+                                IDE complet en ligne avec support TypeScript, parfait pour un projet complexe comme Tetris.
+                            </p>
+                            <ul class="text-sm text-gray-600 space-y-1 mb-4">
+                                <li>• ✅ Gestion de fichiers multiples</li>
+                                <li>• ✅ Support TypeScript complet</li>
+                                <li>• ✅ Prévisualisation en temps réel</li>
+                                <li>• ✅ Partage facile du projet</li>
+                            </ul>
+                            <a href="https://stackblitz.com" target="_blank" class="inline-block bg-green-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-700 transition-colors">
+                                Ouvrir StackBlitz
+                            </a>
+                        </div>
+                        
+                        <div>
+                            <h5 class="font-medium mb-3 text-blue-700">⚡ Alternative : TypeScript Playground</h5>
+                            <p class="text-sm text-gray-600 mb-3">
+                                Pour commencer rapidement et tester les concepts de base.
+                            </p>
+                            <ul class="text-sm text-gray-600 space-y-1 mb-4">
+                                <li>• ✅ Simple et rapide</li>
+                                <li>• ✅ Compilation instantanée</li>
+                                <li>• ⚠️ Limité pour gros projets</li>
+                                <li>• ⚠️ Un seul fichier</li>
+                            </ul>
+                            <a href="https://www.typescriptlang.org/play" target="_blank" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition-colors">
+                                Ouvrir Playground
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation entre sessions -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <a href="session2-structures.html" class="flex items-center text-gray-600 hover:text-green-600 transition-colors">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Session 2 : Structures de Données
+                </a>
+                
+                <a href="../index.html" class="flex items-center bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
+                    Retour à l'accueil
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <p class="text-gray-400">Algorithmie Avancée - BAC+2 | Formateur : Akram BOUKHERS</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Smooth scrolling pour les liens d'ancrage
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

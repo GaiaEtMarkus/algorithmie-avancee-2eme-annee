@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session 1 - Introduction à l'Algorithmie | Algorithmie Avancée</title>
+    <meta name="description" content="Session 1 du cours d'Algorithmie Avancée - Introduction à l'Algorithmie et Résolution de Problèmes (5h)">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a'
+                        },
+                        accent: {
+                            500: '#10b981',
+                            600: '#059669'
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="../index.html" class="text-xl font-bold text-primary-700">Algorithmie Avancée</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="../index.html" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Accueil</a>
+                        <a href="#objectifs" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Objectifs</a>
+                        <a href="#theorie" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Théorie</a>
+                        <a href="#pratique" class="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Pratique</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-blue-500 to-blue-700 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    Session 1 : Introduction à l'Algorithmie
+                </h1>
+                <p class="text-xl mb-6 text-blue-100">
+                    Résolution de Problèmes et Structures de Contrôle
+                </p>
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 max-w-2xl mx-auto">
+                    <p class="text-lg mb-2">
+                        <strong>Durée :</strong> 5 heures
+                    </p>
+                    <p class="text-lg mb-2">
+                        <strong>Format :</strong> Théorie + Démonstrations + Travaux Pratiques
+                    </p>
+                    <p class="text-lg">
+                        <strong>Niveau :</strong> BAC+2 - Fondamentaux
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objectifs -->
+    <section id="objectifs" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">🎯 Objectifs de la Session</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    À la fin de cette session, vous serez capable de comprendre les concepts fondamentaux 
+                    de l'algorithmie et d'implémenter des solutions simples.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="text-center p-6 bg-blue-50 rounded-xl">
+                    <div class="text-4xl mb-4">🧠</div>
+                    <h3 class="text-lg font-semibold mb-2">Comprendre</h3>
+                    <p class="text-gray-600 text-sm">Définir et formuler des problèmes algorithmiques</p>
+                </div>
+                <div class="text-center p-6 bg-green-50 rounded-xl">
+                    <div class="text-4xl mb-4">🔧</div>
+                    <h3 class="text-lg font-semibold mb-2">Implémenter</h3>
+                    <p class="text-gray-600 text-sm">Utiliser les structures de contrôle en pratique</p>
+                </div>
+                <div class="text-center p-6 bg-purple-50 rounded-xl">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="text-lg font-semibold mb-2">Résoudre</h3>
+                    <p class="text-gray-600 text-sm">Appliquer des méthodes de résolution de problèmes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenu Théorique -->
+    <section id="theorie" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">📖 Contenu Théorique</h2>
+                <p class="text-lg text-gray-600">Les fondamentaux de l'algorithmie expliqués en détail</p>
+            </div>
+            
+            <div class="space-y-8">
+                <!-- Bloc 1 -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                            <span class="text-2xl">1️⃣</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Fondamentaux de l'Algorithmie</h3>
+                    </div>
+                    
+                    <div class="space-y-8">
+                        <!-- Définition et Importance -->
+                        <div>
+                            <h4 class="text-xl font-semibold mb-6 text-blue-700">Définition et Importance des Algorithmes</h4>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Qu'est-ce qu'un algorithme ?</h5>
+                                    <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                                        <p class="text-gray-700 mb-3">
+                                            Un <strong>algorithme</strong> est une suite finie et ordonnée d'instructions permettant de résoudre un problème donné.
+                                        </p>
+                                        <p class="text-gray-600 text-sm">
+                                            C'est comme une recette de cuisine : des étapes claires et précises pour obtenir un résultat.
+                                        </p>
+                                    </div>
+                                    
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Caractéristiques essentielles :</h5>
+                                    <ul class="space-y-2 text-gray-600">
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2">✓</span>
+                                            <span><strong>Fini :</strong> L'algorithme doit se terminer</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2">✓</span>
+                                            <span><strong>Déterministe :</strong> Même résultat pour les mêmes entrées</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2">✓</span>
+                                            <span><strong>Général :</strong> Fonctionne pour plusieurs cas</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-blue-500 mr-2">✓</span>
+                                            <span><strong>Effectif :</strong> Chaque étape est exécutable</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Algorithme vs Programme</h5>
+                                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div class="text-center p-3 bg-blue-100 rounded">
+                                                <h6 class="font-semibold text-blue-800">Algorithme</h6>
+                                                <p class="text-sm text-blue-600">L'idée, le concept</p>
+                                            </div>
+                                            <div class="text-center p-3 bg-green-100 rounded">
+                                                <h6 class="font-semibold text-green-800">Programme</h6>
+                                                <p class="text-sm text-green-600">L'implémentation</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Exemple concret :</h5>
+                                    <div class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm">
+                                        <pre><code>// Algorithme : Trier une liste
+1. Prendre le premier élément
+2. Le comparer avec les suivants
+3. Le placer à la bonne position
+4. Répéter pour chaque élément
+
+// Programme TypeScript
+function trier(liste: number[]): number[] {
+    // Implémentation du tri
+    return liste.sort((a, b) => a - b);
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Résolution de Problèmes -->
+                        <div>
+                            <h4 class="text-xl font-semibold mb-6 text-green-700">Méthodes de Résolution de Problèmes</h4>
+                            <div class="grid md:grid-cols-3 gap-6">
+                                <div class="bg-green-50 p-6 rounded-lg">
+                                    <h5 class="text-lg font-semibold mb-4 text-green-800">1. Analyser le Problème</h5>
+                                    <ul class="space-y-2 text-gray-600 text-sm">
+                                        <li>• Comprendre l'énoncé</li>
+                                        <li>• Identifier les données d'entrée</li>
+                                        <li>• Définir le résultat attendu</li>
+                                        <li>• Repérer les contraintes</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-blue-50 p-6 rounded-lg">
+                                    <h5 class="text-lg font-semibold mb-4 text-blue-800">2. Décomposer</h5>
+                                    <ul class="space-y-2 text-gray-600 text-sm">
+                                        <li>• Diviser en sous-problèmes</li>
+                                        <li>• Identifier les étapes logiques</li>
+                                        <li>• Simplifier la complexité</li>
+                                        <li>• Créer des modules</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-purple-50 p-6 rounded-lg">
+                                    <h5 class="text-lg font-semibold mb-4 text-purple-800">3. Planifier</h5>
+                                    <ul class="space-y-2 text-gray-600 text-sm">
+                                        <li>• Établir l'ordre des étapes</li>
+                                        <li>• Définir les conditions</li>
+                                        <li>• Prévoir les cas limites</li>
+                                        <li>• Tester la logique</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 bg-yellow-50 p-6 rounded-lg">
+                                <h5 class="text-lg font-semibold mb-4 text-yellow-800">Exemple Pratique : Calculer la moyenne</h5>
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <h6 class="font-medium mb-2">Analyse :</h6>
+                                        <ul class="text-sm text-gray-600 space-y-1">
+                                            <li>• Entrée : Liste de nombres</li>
+                                            <li>• Sortie : Un nombre (la moyenne)</li>
+                                            <li>• Contrainte : Liste non vide</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h6 class="font-medium mb-2">Algorithme :</h6>
+                                        <ol class="text-sm text-gray-600 space-y-1">
+                                            <li>1. Additionner tous les nombres</li>
+                                            <li>2. Compter le nombre d'éléments</li>
+                                            <li>3. Diviser la somme par le nombre</li>
+                                            <li>4. Retourner le résultat</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloc 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-100 p-3 rounded-lg mr-4">
+                            <span class="text-2xl">2️⃣</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Structures de Contrôle</h3>
+                    </div>
+                    
+                    <div class="space-y-8">
+                        <!-- Variables et Types -->
+                        <div>
+                            <h4 class="text-xl font-semibold mb-6 text-purple-700">Variables et Types en TypeScript</h4>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Types de base</h5>
+                                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                        <pre class="text-sm text-gray-700"><code>// Types primitifs
+let nombre: number = 42;
+let texte: string = "Bonjour";
+let estVrai: boolean = true;
+let rien: null = null;
+let indefini: undefined = undefined;
+
+// Types complexes
+let liste: number[] = [1, 2, 3, 4, 5];
+let objet: {nom: string, age: number} = {
+    nom: "Alice",
+    age: 25
+};</code></pre>
+                                    </div>
+                                    
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Déclaration des variables</h5>
+                                    <div class="bg-blue-50 p-4 rounded-lg">
+                                        <ul class="text-sm text-gray-600 space-y-2">
+                                            <li><strong>let :</strong> Variable modifiable, portée de bloc</li>
+                                            <li><strong>const :</strong> Constante, ne peut pas être réassignée</li>
+                                            <li><strong>var :</strong> Ancienne syntaxe, à éviter</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Portée des variables</h5>
+                                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                        <pre class="text-sm text-gray-700"><code>function exemple() {
+    let local = "visible dans la fonction";
+    const constante = "ne change jamais";
+    
+    if (true) {
+        let bloc = "visible dans le bloc";
+        console.log(local); // ✓ OK
+    }
+    
+    console.log(bloc); // ✗ Erreur !
+}</code></pre>
+                                    </div>
+                                    
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Bonnes pratiques</h5>
+                                    <ul class="text-sm text-gray-600 space-y-2">
+                                        <li>• Utiliser <code>const</code> par défaut</li>
+                                        <li>• Utiliser <code>let</code> seulement si nécessaire</li>
+                                        <li>• Donner des noms explicites</li>
+                                        <li>• Éviter les variables globales</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fonctions -->
+                        <div>
+                            <h4 class="text-xl font-semibold mb-6 text-blue-700">Fonctions et Paramètres</h4>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Déclaration de fonctions</h5>
+                                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                        <pre class="text-sm text-gray-700"><code>// Fonction simple
+function additionner(a: number, b: number): number {
+    return a + b;
+}
+
+// Fonction avec paramètres optionnels
+function saluer(nom: string, age?: number): string {
+    if (age) {
+        return `Bonjour ${nom}, vous avez ${age} ans`;
+    }
+    return `Bonjour ${nom}`;
+}
+
+// Fonction fléchée
+const multiplier = (a: number, b: number): number => {
+    return a * b;
+};</code></pre>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Types de retour et paramètres</h5>
+                                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                        <pre class="text-sm text-gray-700"><code>// Fonction sans retour
+function afficher(message: string): void {
+    console.log(message);
+}
+
+// Fonction avec plusieurs types
+function traiter(valeur: string | number): string {
+    if (typeof valeur === "string") {
+        return valeur.toUpperCase();
+    }
+    return valeur.toString();
+}
+
+// Fonction avec tableau en paramètre
+function calculerMoyenne(nombres: number[]): number {
+    const somme = nombres.reduce((acc, num) => acc + num, 0);
+    return somme / nombres.length;
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Boucles -->
+                        <div>
+                            <h4 class="text-xl font-semibold mb-6 text-green-700">Boucles et Itérations</h4>
+                            <div class="grid md:grid-cols-3 gap-6">
+                                <div class="bg-green-50 p-6 rounded-lg">
+                                    <h5 class="text-lg font-semibold mb-4 text-green-800">Boucle for</h5>
+                                    <div class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm mb-4">
+                                        <pre><code>// Boucle classique
+for (let i = 0; i < 5; i++) {
+    console.log(i); // 0, 1, 2, 3, 4
+}
+
+// Boucle sur un tableau
+const fruits = ["pomme", "banane"];
+for (let i = 0; i < fruits.length; i++) {
+    console.log(fruits[i]);
+}</code></pre>
+                                    </div>
+                                    <p class="text-sm text-gray-600">Idéale quand on connaît le nombre d'itérations</p>
+                                </div>
+                                
+                                <div class="bg-blue-50 p-6 rounded-lg">
+                                    <h5 class="text-lg font-semibold mb-4 text-blue-800">Boucle while</h5>
+                                    <div class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm mb-4">
+                                        <pre><code>// Boucle conditionnelle
+let compteur = 0;
+while (compteur < 3) {
+    console.log(compteur);
+    compteur++;
+}
+
+// Boucle avec condition complexe
+let nombre = 1;
+while (nombre < 100) {
+    nombre *= 2;
+    console.log(nombre);
+}</code></pre>
+                                    </div>
+                                    <p class="text-sm text-gray-600">Idéale quand la condition est complexe</p>
+                                </div>
+                                
+                                <div class="bg-purple-50 p-6 rounded-lg">
+                                    <h5 class="text-lg font-semibold mb-4 text-purple-800">Boucle for...of</h5>
+                                    <div class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm mb-4">
+                                        <pre><code>// Parcourir un tableau
+const nombres = [1, 2, 3, 4, 5];
+for (const nombre of nombres) {
+    console.log(nombre);
+}
+
+// Parcourir une chaîne
+const mot = "Hello";
+for (const lettre of mot) {
+    console.log(lettre);
+}</code></pre>
+                                    </div>
+                                    <p class="text-sm text-gray-600">Idéale pour parcourir des collections</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Structures conditionnelles -->
+                        <div>
+                            <h4 class="text-xl font-semibold mb-6 text-orange-700">Structures Conditionnelles</h4>
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div>
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">if/else/else if</h5>
+                                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                        <pre class="text-sm text-gray-700"><code>// Condition simple
+const age = 20;
+if (age >= 18) {
+    console.log("Majeur");
+} else {
+    console.log("Mineur");
+}
+
+// Conditions multiples
+const note = 85;
+if (note >= 90) {
+    console.log("Excellent");
+} else if (note >= 80) {
+    console.log("Très bien");
+} else if (note >= 70) {
+    console.log("Bien");
+} else {
+    console.log("À améliorer");
+}</code></pre>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="text-lg font-medium mb-4 text-gray-800">Opérateurs logiques</h5>
+                                    <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                        <pre class="text-sm text-gray-700"><code>// ET logique (&&)
+if (age >= 18 && age <= 65) {
+    console.log("Actif");
+}
+
+// OU logique (||)
+if (meteo === "soleil" || meteo === "nuageux") {
+    console.log("Sortie possible");
+}
+
+// NON logique (!)
+if (!estConnecte) {
+    console.log("Veuillez vous connecter");
+}
+
+// Opérateur ternaire
+const message = age >= 18 ? "Majeur" : "Mineur";</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Travaux Pratiques -->
+    <section id="pratique" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">💻 Exercices par Concept</h2>
+                <p class="text-lg text-gray-600">Un exercice par concept abordé pour une maîtrise progressive</p>
+            </div>
+            
+            <div class="space-y-8">
+                <!-- Exercice 1: Définition d'algorithmes -->
+                <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-500 text-white p-3 rounded-lg mr-4">
+                            <span class="text-2xl">🧠</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Exercice 1 : Définition d'Algorithmes</h3>
+                            <p class="text-gray-600">Concept : Analyser et formuler des problèmes</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-blue-700">Objectif</h4>
+                            <p class="text-gray-600 mb-4">
+                                Analyser un problème simple et écrire l'algorithme correspondant en pseudocode.
+                            </p>
+                            
+                            <h4 class="text-lg font-semibold mb-4 text-blue-700">Problème : Calculer le prix TTC</h4>
+                            <div class="bg-white p-4 rounded-lg mb-4">
+                                <p class="text-sm text-gray-600 mb-2">
+                                    <strong>Énoncé :</strong> Créer un algorithme qui calcule le prix TTC d'un produit.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Entrée : Prix HT et taux de TVA</li>
+                                    <li>• Sortie : Prix TTC</li>
+                                    <li>• Formule : TTC = HT × (1 + TVA/100)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-green-700">Pseudocode à écrire</h4>
+                            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                                <pre class="text-sm text-gray-700"><code>ALGORITHME CalculerTTC
+DÉBUT
+    // Votre pseudocode ici
+    // 1. Lire le prix HT
+    // 2. Lire le taux de TVA
+    // 3. Calculer le prix TTC
+    // 4. Afficher le résultat
+FIN</code></pre>
+                            </div>
+                            
+                            <h4 class="text-lg font-semibold mb-4 text-purple-700">Implémentation TypeScript</h4>
+                            <div class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm">
+                                <pre><code>function calculerTTC(prixHT: number, tauxTVA: number): number {
+    // Votre code ici
+    return 0; // À remplacer
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercice 2: Variables et Types -->
+                <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-500 text-white p-3 rounded-lg mr-4">
+                            <span class="text-2xl">📊</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Exercice 2 : Variables et Types</h3>
+                            <p class="text-gray-600">Concept : Manipulation des variables et types</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-green-700">Objectif</h4>
+                            <p class="text-gray-600 mb-4">
+                                Créer et manipuler différents types de variables pour stocker des informations d'un étudiant.
+                            </p>
+                            
+                            <h4 class="text-lg font-semibold mb-4 text-green-700">Problème : Gestion d'étudiant</h4>
+                            <div class="bg-white p-4 rounded-lg mb-4">
+                                <p class="text-sm text-gray-600 mb-2">
+                                    <strong>Énoncé :</strong> Créer un système de gestion d'informations étudiant.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Nom (string)</li>
+                                    <li>• Âge (number)</li>
+                                    <li>• Notes (array de numbers)</li>
+                                    <li>• Est diplômé (boolean)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-blue-700">Code à compléter</h4>
+                            <div class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm">
+                                <pre><code>// Déclarer les variables
+let nom: string = "Alice";
+let age: number = 20;
+let notes: number[] = [15, 18, 12, 16];
+let estDiplome: boolean = false;
+
+// Fonction pour calculer la moyenne
+function calculerMoyenne(notes: number[]): number {
+    // Votre code ici
+    // Additionner toutes les notes
+    // Diviser par le nombre de notes
+    return 0; // À remplacer
+}
+
+// Afficher les informations
+console.log(`Étudiant: ${nom}`);
+console.log(`Âge: ${age}`);
+console.log(`Moyenne: ${calculerMoyenne(notes)}`);</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercice 3: Fonctions -->
+                <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-purple-500 text-white p-3 rounded-lg mr-4">
+                            <span class="text-2xl">⚙️</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Exercice 3 : Fonctions</h3>
+                            <p class="text-gray-600">Concept : Création et utilisation de fonctions</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-purple-700">Objectif</h4>
+                            <p class="text-gray-600 mb-4">
+                                Créer des fonctions utilitaires pour un système de calculatrice.
+                            </p>
+                            
+                            <h4 class="text-lg font-semibold mb-4 text-purple-700">Problème : Calculatrice</h4>
+                            <div class="bg-white p-4 rounded-lg mb-4">
+                                <p class="text-sm text-gray-600 mb-2">
+                                    <strong>Énoncé :</strong> Créer une calculatrice avec les opérations de base.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Addition, soustraction, multiplication, division</li>
+                                    <li>• Gestion des erreurs (division par zéro)</li>
+                                    <li>• Fonction principale qui choisit l'opération</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-orange-700">Code à compléter</h4>
+                            <div class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm">
+                                <pre><code>// Fonctions des opérations
+function additionner(a: number, b: number): number {
+    // Votre code ici
+}
+
+function soustraire(a: number, b: number): number {
+    // Votre code ici
+}
+
+function multiplier(a: number, b: number): number {
+    // Votre code ici
+}
+
+function diviser(a: number, b: number): number {
+    // Votre code ici
+    // Gérer la division par zéro
+}
+
+// Fonction principale
+function calculatrice(a: number, b: number, operation: string): number {
+    // Votre code ici
+    // Utiliser switch ou if/else
+    // Appeler la bonne fonction
+    return 0; // À remplacer
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercice 4: Boucles -->
+                <div class="bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-orange-500 text-white p-3 rounded-lg mr-4">
+                            <span class="text-2xl">🔄</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Exercice 4 : Boucles</h3>
+                            <p class="text-gray-600">Concept : Itération et répétition</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-orange-700">Objectif</h4>
+                            <p class="text-gray-600 mb-4">
+                                Utiliser différents types de boucles pour traiter des données.
+                            </p>
+                            
+                            <h4 class="text-lg font-semibold mb-4 text-orange-700">Problème : Analyse de données</h4>
+                            <div class="bg-white p-4 rounded-lg mb-4">
+                                <p class="text-sm text-gray-600 mb-2">
+                                    <strong>Énoncé :</strong> Analyser un tableau de températures.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• Trouver la température maximale</li>
+                                    <li>• Compter les jours > 20°C</li>
+                                    <li>• Calculer la moyenne</li>
+                                    <li>• Afficher toutes les températures</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-red-700">Code à compléter</h4>
+                            <div class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm">
+                                <pre><code>const temperatures = [18, 22, 25, 19, 28, 21, 24];
+
+// 1. Trouver la température maximale (boucle for)
+function trouverMax(temps: number[]): number {
+    // Votre code ici
+    return 0; // À remplacer
+}
+
+// 2. Compter les jours chauds (boucle for...of)
+function compterJoursChauds(temps: number[]): number {
+    // Votre code ici
+    return 0; // À remplacer
+}
+
+// 3. Calculer la moyenne (boucle while)
+function calculerMoyenne(temps: number[]): number {
+    // Votre code ici
+    return 0; // À remplacer
+}
+
+// 4. Afficher toutes les températures
+function afficherTemperatures(temps: number[]): void {
+    // Votre code ici
+    // Utiliser console.log() pour chaque température
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercice 5: Conditions -->
+                <div class="bg-gradient-to-r from-red-50 to-red-100 rounded-xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-red-500 text-white p-3 rounded-lg mr-4">
+                            <span class="text-2xl">🎯</span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Exercice 5 : Structures Conditionnelles</h3>
+                            <p class="text-gray-600">Concept : Prise de décision et logique</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-red-700">Objectif</h4>
+                            <p class="text-gray-600 mb-4">
+                                Utiliser les conditions pour créer un système de notation.
+                            </p>
+                            
+                            <h4 class="text-lg font-semibold mb-4 text-red-700">Problème : Système de notation</h4>
+                            <div class="bg-white p-4 rounded-lg mb-4">
+                                <p class="text-sm text-gray-600 mb-2">
+                                    <strong>Énoncé :</strong> Créer un système de notation avec mentions.
+                                </p>
+                                <ul class="text-sm text-gray-600 space-y-1">
+                                    <li>• 0-9 : Échec</li>
+                                    <li>• 10-11 : Passable</li>
+                                    <li>• 12-13 : Assez bien</li>
+                                    <li>• 14-15 : Bien</li>
+                                    <li>• 16-17 : Très bien</li>
+                                    <li>• 18-20 : Excellent</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-blue-700">Code à compléter</h4>
+                            <div class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm">
+                                <pre><code>// Fonction pour déterminer la mention
+function determinerMention(note: number): string {
+    // Votre code ici
+    // Utiliser if/else if/else
+    // Retourner la mention correspondante
+    return ""; // À remplacer
+}
+
+// Fonction pour valider une note
+function validerNote(note: number): boolean {
+    // Votre code ici
+    // Vérifier que la note est entre 0 et 20
+    return false; // À remplacer
+}
+
+// Fonction principale
+function evaluerEtudiant(note: number): void {
+    // Votre code ici
+    // 1. Valider la note
+    // 2. Si valide, déterminer la mention
+    // 3. Afficher le résultat
+    // 4. Si invalide, afficher une erreur
+}
+
+// Tests
+evaluerEtudiant(16); // "Très bien"
+evaluerEtudiant(8);  // "Échec"
+evaluerEtudiant(25); // "Note invalide"</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Environnement de travail -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">🌐 Environnement de Travail</h2>
+                <p class="text-lg text-gray-600">Plateformes en ligne pour exécuter vos exercices TypeScript</p>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 text-center">⚡ TypeScript Playground - Recommandé</h3>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 text-blue-700">Comment utiliser :</h4>
+                        <ol class="list-decimal list-inside space-y-3 text-gray-600">
+                            <li>Ouvrir <a href="https://www.typescriptlang.org/play" target="_blank" class="text-blue-600 hover:text-blue-800 font-medium">TypeScript Playground</a></li>
+                            <li>Effacer le code existant</li>
+                            <li>Copier-coller le code de l'exercice</li>
+                            <li>Compléter les parties "Votre code ici"</li>
+                            <li>Voir le résultat en temps réel</li>
+                        </ol>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4 text-green-700">Avantages :</h4>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span>Compilation TypeScript instantanée</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span>Affichage du JavaScript généré</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span>Détection d'erreurs en temps réel</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span>Pas d'installation requise</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 bg-yellow-50 p-6 rounded-lg">
+                <h4 class="text-lg font-semibold mb-3 text-yellow-800">💡 Note importante</h4>
+                <p class="text-gray-700 text-sm">
+                    Pour le projet final Tetris (Session 3), nous recommanderons StackBlitz qui offre 
+                    un environnement plus complet avec gestion de fichiers multiples.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ressources -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">📚 Ressources et Support</h2>
+                <p class="text-lg text-gray-600">Matériel complémentaire pour approfondir</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-xl shadow-lg p-6 text-center">
+                    <div class="text-4xl mb-4">📖</div>
+                    <h3 class="text-lg font-semibold mb-2">Documentation</h3>
+                    <p class="text-gray-600 text-sm mb-4">Guide TypeScript et structures de contrôle</p>
+                    <a href="https://www.typescriptlang.org/docs/" target="_blank" class="text-blue-600 hover:text-blue-800 font-medium">Documentation officielle</a>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl shadow-lg p-6 text-center">
+                    <div class="text-4xl mb-4">💻</div>
+                    <h3 class="text-lg font-semibold mb-2">Exemples de code</h3>
+                    <p class="text-gray-600 text-sm mb-4">Templates et solutions d'exercices</p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Voir les exemples</a>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl shadow-lg p-6 text-center">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-lg font-semibold mb-2">Exercices Bonus</h3>
+                    <p class="text-gray-600 text-sm mb-4">Problèmes supplémentaires pour s'entraîner</p>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Accéder</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation entre sessions -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="flex items-center text-gray-600 hover:text-blue-600 transition-colors">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Retour à l'accueil
+                </a>
+                
+                <a href="session2-structures.html" class="flex items-center bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                    Session 2 : Structures de Données
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <p class="text-gray-400">Algorithmie Avancée - BAC+2 | Formateur : Akram BOUKHERS</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Smooth scrolling pour les liens d'ancrage
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
