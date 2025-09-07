@@ -287,19 +287,33 @@ function trier(liste: number[]): number[] {
                                 <div>
                                     <h5 class="text-lg font-medium mb-4 text-gray-800">Types de base</h5>
                                     <div class="bg-gray-50 p-4 rounded-lg mb-4">
-                                        <pre class="text-sm text-gray-700"><code>// Types primitifs
+                                        <pre class="text-sm text-gray-700"><code>// 1. Types primitifs
 let nombre: number = 42;
 let texte: string = "Bonjour";
 let estVrai: boolean = true;
 let rien: null = null;
 let indefini: undefined = undefined;
 
-// Types complexes
+// 2. Types complexes
 let liste: number[] = [1, 2, 3, 4, 5];
 let objet: {nom: string, age: number} = {
     nom: "Alice",
     age: 25
-};</code></pre>
+};
+
+// 3. Types union
+let id: string | number = "ABC123";
+let statut: "actif" | "inactif" = "actif";
+
+// 4. Types optionnels
+let profil: {nom: string, age?: number} = {
+    nom: "Bob"
+    // age est optionnel
+};
+
+// 5. Types de fonction
+let calculer: (x: number, y: number) => number;
+calculer = (a, b) => a + b;</code></pre>
                                     </div>
                                     
                                     <h5 class="text-lg font-medium mb-4 text-gray-800">Déclaration des variables</h5>
@@ -335,6 +349,35 @@ let objet: {nom: string, age: number} = {
                                         <li>• Donner des noms explicites</li>
                                         <li>• Éviter les variables globales</li>
                                     </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- Types avancés -->
+                            <div class="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-lg">
+                                <h5 class="text-lg font-semibold mb-4 text-indigo-800">Types avancés TypeScript</h5>
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <h6 class="font-medium mb-2 text-gray-700">Types littéraux et union</h6>
+                                        <div class="bg-white p-3 rounded text-sm">
+                                            <pre class="text-gray-700"><code>// Types littéraux
+let direction: "nord" | "sud" | "est" | "ouest";
+let niveau: 1 | 2 | 3 | 4 | 5;
+
+// Types union
+let id: string | number = "ABC123";
+let donnee: string | boolean | number;</code></pre>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h6 class="font-medium mb-2 text-gray-700">Types spéciaux</h6>
+                                        <div class="bg-white p-3 rounded text-sm">
+                                            <pre class="text-gray-700"><code>// Types spéciaux
+let rien: void = undefined; // Pas de retour
+let erreur: never; // Ne retourne jamais
+let donnee: any = "n'importe quoi";
+let inconnu: unknown = "à vérifier";</code></pre>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -596,16 +639,18 @@ FIN</code></pre>
                                 Créer et manipuler différents types de variables pour stocker des informations d'un étudiant.
                             </p>
                             
-                            <h4 class="text-lg font-semibold mb-4 text-green-700">Problème : Gestion d'étudiant</h4>
+                            <h4 class="text-lg font-semibold mb-4 text-green-700">Problème : Gestion d'étudiant complète</h4>
                             <div class="bg-white p-4 rounded-lg mb-4">
                                 <p class="text-sm text-gray-600 mb-2">
-                                    <strong>Énoncé :</strong> Créer un système de gestion d'informations étudiant.
+                                    <strong>Énoncé :</strong> Créer un système complet de gestion d'informations étudiant avec tous les types TypeScript.
                                 </p>
                                 <ul class="text-sm text-gray-600 space-y-1">
-                                    <li>• Nom (string)</li>
-                                    <li>• Âge (number)</li>
-                                    <li>• Notes (array de numbers)</li>
-                                    <li>• Est diplômé (boolean)</li>
+                                    <li>• Types primitifs : string, number, boolean</li>
+                                    <li>• Types complexes : array, object</li>
+                                    <li>• Types union : string | number</li>
+                                    <li>• Types littéraux : "actif" | "inactif"</li>
+                                    <li>• Types optionnels : age?: number</li>
+                                    <li>• Types de fonction : (x: number) => number</li>
                                 </ul>
                             </div>
                         </div>
@@ -613,23 +658,46 @@ FIN</code></pre>
                         <div>
                             <h4 class="text-lg font-semibold mb-4 text-blue-700">Code à compléter</h4>
                             <div class="bg-gray-900 text-green-400 p-4 rounded-lg text-sm">
-                                <pre><code>// Déclarer les variables
+                                <pre><code>// 1. Types primitifs
 let nom: string = "Alice";
 let age: number = 20;
-let notes: number[] = [15, 18, 12, 16];
 let estDiplome: boolean = false;
+let rien: null = null;
+let indefini: undefined = undefined;
 
-// Fonction pour calculer la moyenne
-function calculerMoyenne(notes: number[]): number {
+// 2. Types complexes
+let notes: number[] = [15, 18, 12, 16];
+let etudiant: {nom: string, age: number, notes: number[]} = {
+    nom: "Bob",
+    age: 22,
+    notes: [14, 16, 18]
+};
+
+// 3. Types union
+let id: string | number = "ETU001"; // Peut être string ou number
+let statut: "actif" | "inactif" | "suspendu" = "actif";
+
+// 4. Types optionnels
+let profil: {nom: string, age?: number, email?: string} = {
+    nom: "Charlie"
+    // age et email sont optionnels
+};
+
+// 5. Types de fonction
+let calculerMoyenne: (notes: number[]) => number = (notes) => {
     // Votre code ici
     // Additionner toutes les notes
     // Diviser par le nombre de notes
     return 0; // À remplacer
-}
+};
+
+// 6. Types littéraux
+let niveau: 1 | 2 | 3 | 4 | 5 = 3;
+let orientation: "nord" | "sud" | "est" | "ouest" = "nord";
 
 // Afficher les informations
-console.log(`Étudiant: ${nom}`);
-console.log(`Âge: ${age}`);
+console.log(`Étudiant: ${nom}, Niveau: ${niveau}`);
+console.log(`ID: ${id}, Statut: ${statut}`);
 console.log(`Moyenne: ${calculerMoyenne(notes)}`);</code></pre>
                             </div>
                         </div>
