@@ -13,21 +13,24 @@ Site web statique pour le cours d'Algorithmie Avancée destiné aux étudiants B
 
 Ce site est optimisé pour être hébergé sur :
 
-### GitHub Pages (Recommandé)
-1. Créer un repository GitHub
-2. Uploader tous les fichiers
-3. Activer GitHub Pages dans les settings
-4. Le site sera accessible à `https://votre-username.github.io/nom-du-repo`
+### 🚀 Vercel (Recommandé)
+```bash
+# Méthode rapide
+npm install -g vercel
+./deploy.sh
+```
 
-### Netlify (Alternative)
-1. Drag & drop du dossier sur [netlify.com](https://netlify.com)
-2. Déploiement automatique
-3. URL personnalisée disponible
+**Avantages Vercel :**
+- ✅ Déploiement en quelques secondes
+- ✅ HTTPS automatique
+- ✅ CDN global
+- ✅ Mises à jour automatiques
 
-### Vercel (Alternative)
-1. Connecter le repository GitHub
-2. Déploiement automatique à chaque push
-3. URL personnalisée disponible
+### 📖 Guide détaillé
+Voir le fichier `DEPLOYMENT.md` pour un guide complet avec :
+- Configuration GitHub
+- Déploiement automatique
+- Gestion des mises à jour
 
 ## 📁 Structure du Site
 
